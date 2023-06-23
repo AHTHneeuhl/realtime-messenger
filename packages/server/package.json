@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "@messenger/server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -15,7 +15,7 @@
     "express": "^4.18.2",
     "helmet": "^7.0.0",
     "socket.io": "^4.7.0",
-    "yup": "^1.2.0"
+    "@messenger/common": "1.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.3.1",

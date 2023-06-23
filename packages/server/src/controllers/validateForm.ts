@@ -1,14 +1,5 @@
-import * as Yup from "yup";
 import { Request, Response } from "express";
-
-const formSchema = Yup.object({
-  username: Yup.string()
-    .required("Username required!")
-    .min(6, "Username too short!"),
-  password: Yup.string()
-    .required("Password required!")
-    .min(6, "Password too short!"),
-});
+import { formSchema } from "@messenger/common";
 
 export const validateForm = (req: Request, res: Response) => {
   const formData = req.body;
@@ -17,6 +8,7 @@ export const validateForm = (req: Request, res: Response) => {
     .then((valid) => {
       if (valid) {
         console.log("Valid");
+        res.status(200).send();
       }
     })
     .catch((err) => {

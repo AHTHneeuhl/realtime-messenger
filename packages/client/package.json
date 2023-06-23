@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "@messenger/client",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -19,7 +19,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.13.0",
-    "yup": "^1.2.0"
+    "@messenger/common": "1.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",

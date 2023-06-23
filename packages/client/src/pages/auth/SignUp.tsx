@@ -9,9 +9,9 @@ import {
   Input,
   VStack,
 } from "@chakra-ui/react";
+import { formSchema } from "@messenger/common";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
-import * as Yup from "yup";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -22,14 +22,7 @@ function SignUp() {
         username: "",
         password: "",
       },
-      validationSchema: Yup.object({
-        username: Yup.string()
-          .required("Username required!")
-          .min(6, "Username too short!"),
-        password: Yup.string()
-          .required("Password required!")
-          .min(6, "Password too short!"),
-      }),
+      validationSchema: formSchema,
       onSubmit: (values, actions) => {
         const vals = { ...values };
         actions.resetForm();

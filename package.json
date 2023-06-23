@@ -1,0 +1,12 @@
+{
+  "name": "realtime-messenger",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:AHTHneeuhl/realtime-messenger.git",
+  "author": "Shubham Patrick <ahthneeuhl@gmail.com>",
+  "license": "MIT",
+  "private": "true",
+  "workspaces": [
+    "packages/*"
+  ]
+}
