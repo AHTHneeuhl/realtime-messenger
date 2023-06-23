@@ -31,8 +31,31 @@ function SignUp() {
           .min(6, "Password too short!"),
       }),
       onSubmit: (values, actions) => {
-        alert(JSON.stringify(values, null, 2));
+        const vals = { ...values };
         actions.resetForm();
+        fetch("http://localhost:8080/auth/signup", {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(vals),
+        })
+          .then((res) => {
+            if (!res || !res.ok || res.status >= 400) {
+              return;
+            }
+            return res.json();
+          })
+          .then((data) => {
+            if (!data) return;
+
+            console.log(data);
+          })
+          .catch((err) => {
+            console.error(err);
+            return;
+          });
       },
     });
 
