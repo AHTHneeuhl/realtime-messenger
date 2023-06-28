@@ -1,10 +1,12 @@
-import express from "express";
-import { createServer } from "http";
-import { Server } from "socket.io";
-import helmet from "helmet";
+import RedisStore from "connect-redis";
 import cors from "cors";
-import session from "express-session";
 import dotenv from "dotenv";
+import express from "express";
+import session from "express-session";
+import helmet from "helmet";
+import { createServer } from "http";
+import { Redis } from "ioredis";
+import { Server } from "socket.io";
 
 dotenv.config();
 
@@ -22,11 +24,13 @@ const io = new Server(server, {
   },
 });
 
+const redisClient = new Redis();
 app.use(helmet());
 app.use(
   session({
     secret: process.env.SESSION_SECRET!,
     name: "sid",
+    store: new RedisStore({ client: redisClient }),
     resave: false,
     saveUninitialized: false,
     cookie: {
