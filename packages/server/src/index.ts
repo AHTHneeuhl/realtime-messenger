@@ -3,6 +3,10 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import helmet from "helmet";
 import cors from "cors";
+import session from "express-session";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 // routes
 import authRouter from "./routes/authRouter";
@@ -19,6 +23,19 @@ const io = new Server(server, {
 });
 
 app.use(helmet());
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET!,
+    name: "sid",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: process.env.NODE_ENV === "production",
+      httpOnly: true,
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    },
+  })
+);
 app.use(
   cors({
     origin: "http://localhost:3000",
